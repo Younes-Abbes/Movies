@@ -1,0 +1,6 @@
+﻿@model IEnumerable<AspCoreApplication2023.Models.Movie>
+<h2>Movie List</h2>
+@foreach (var movie in Model)
+{
+    <h3 class="text-red-500">@movie.Id -> @movie.Name</h3>
+}

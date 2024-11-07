@@ -1,0 +1,36 @@
+﻿@model WebApplication1.Models.Memebershiptype
+@{
+    ViewData["Title"] = "Create Membership Type";
+}
+
+<h2>Create Membership Type</h2>
+
+<form asp-action="Create">
+    
+    <div class="form-group">
+        <label class="control-label"></label>
+        <input asp-for="SignUpFee" class="form-control" />
+        <span  class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label  class="control-label"></label>
+        <input  asp-for="DurationInMonth" class="form-control" />
+        <span  class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label  class="control-label"></label>
+        <input accesskey="DiscountRate" class="form-control" />
+        <span  class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

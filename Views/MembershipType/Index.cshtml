@@ -1,0 +1,30 @@
+﻿@model List<WebApplication1.Models.Memebershiptype>
+
+<h2>Membership Types</h2>
+
+<p>
+    <a href="@Url.Action("Create", "MembershipType")" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Sign Up Fee</th>
+            <th>Duration (Months)</th>
+            <th>Discount Rate (%)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var membershipType in Model)
+        {
+            <tr>
+                <td>@membershipType.Id</td>
+                <td>@membershipType.SignUpFee</td>
+                <td>@membershipType.DurationInMonth</td>
+                <td>@membershipType.DiscountRate</td>
+            </tr>
+        }
+    </tbody>
+</table>

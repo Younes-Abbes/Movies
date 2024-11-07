@@ -1,0 +1,27 @@
+﻿@model List<Customer>
+
+<div class="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-6">Index</h1>
+
+    <a href="/Customer/Create" class="text-blue-500 hover:underline mb-4 inline-block">Create New</a>
+
+    <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+            <tr>
+                <th class="border-b border-gray-300 px-4 py-2 text-left font-medium">Name</th>
+                <th class="border-b border-gray-300 px-4 py-2 text-left font-medium">DiscountRate</th>
+                <th class="border-b border-gray-300 px-4 py-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var customer in Model)
+            {
+                <tr>
+                    <td class="border-b border-gray-300 px-4 py-2">@customer.Name</td>
+                    <td class="border-b border-gray-300 px-4 py-2">69</td>
+                    <td class="border-b border-gray-300 px-4 py-2"><a asp-controller="customer" asp-action="edit" asp-route-id="@customer.Id" class="text-yellow-400">edit</a> | <a href="/">details</a> | <a href="/">delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

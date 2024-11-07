@@ -1,0 +1,29 @@
+﻿@model WebApplication1.Models.ViewModels.AddCustomer
+
+
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-4">Create</h1>
+    <h2 class="text-xl font-semibold mb-4">Customer</h2>
+
+    <form action="#" method="POST">
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <input type="text" id="name" asp-for="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter name">
+        </div>
+
+        <div class="mb-4">
+            <label for="membership" class="block text-sm font-medium text-gray-700">Membership Name</label>
+            <select id="membership" asp-for="membership" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <option value="1">Membership 1</option>
+                <option value="2">Membership 2</option>
+                <option value="3">Membership 3</option>
+            </select>
+        </div>
+
+        <div class="flex items-center justify-start">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Create</button>
+        </div>
+    </form>
+
+    <a href="/Customer" class="text-blue-500 hover:underline mt-4 block">Back to List</a>
+</div>
