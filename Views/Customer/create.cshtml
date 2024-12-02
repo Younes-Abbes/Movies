@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Models.ViewModels.AddCustomer
+﻿@model Customer
 
 
 <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
@@ -8,15 +8,12 @@
     <form action="#" method="POST">
         <div class="mb-4">
             <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-            <input type="text" id="name" asp-for="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter name">
+            <input type="text" id="name" asp-for="Name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter name">
         </div>
 
         <div class="mb-4">
             <label for="membership" class="block text-sm font-medium text-gray-700">Membership Name</label>
-            <select id="membership" asp-for="membership" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                <option value="1">Membership 1</option>
-                <option value="2">Membership 2</option>
-                <option value="3">Membership 3</option>
+            <select id="membership" asp-items="@ViewBag.memberships" asp-for="membershipType" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             </select>
         </div>
 

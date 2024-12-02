@@ -1,4 +1,4 @@
-﻿using AspCoreApplication2023.Models;
+﻿using WebApplication1.Models.DomainModels;
 using WebApplication1.Models;
 
 namespace WebApplication1.Models.ViewModels

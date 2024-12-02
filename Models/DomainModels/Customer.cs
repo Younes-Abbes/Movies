@@ -1,6 +1,5 @@
-﻿using WebApplication1.Models;
-
-namespace AspCoreApplication2023.Models
+﻿
+namespace WebApplication1.Models.DomainModels
 {
     public class Customer
     {
@@ -9,9 +8,9 @@ namespace AspCoreApplication2023.Models
         {
             this.Name = name;
         }
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public Memebershiptype? memebershipType { get; set; }
+        public Memebershiptype? membershipType { get; set; }
         public ICollection<Movie>? movies { get; set; }
     }
 }

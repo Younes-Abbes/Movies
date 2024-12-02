@@ -1,6 +1,25 @@
-﻿@model IEnumerable<AspCoreApplication2023.Models.Movie>
+﻿@model List<Movie>
 <h2>Movie List</h2>
-@foreach (var movie in Model)
-{
-    <h3 class="text-red-500">@movie.Id -> @movie.Name</h3>
-}
+<table class="table-auto">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr class="bg-black">
+                <td>@movie.Id</td>
+                <td>@movie.Name</td>
+                <td>
+                    <a  class="bg-blue-500 text-black p-2" asp-area="" asp-controller="Movie" asp-action="edit" asp-route-id="@movie.Id" >Edit</a>
+                    <a style="background: #FF0000" class=" text-black p-2" asp-area="" asp-controller="Movie" asp-action="delete" asp-route-id="@movie.Id" >Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button style="background: #00FF00" class=" text-black p-4 mt-4" onclick="location.href='@Url.Action("add", "Movie")'">Insert New Movie</button>

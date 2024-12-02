@@ -1,6 +1,5 @@
-﻿using AspCoreApplication2023.Models;
+﻿using WebApplication1.Models.DomainModels;
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Models;
 
 public class ApplicationDbContext : DbContext
 {

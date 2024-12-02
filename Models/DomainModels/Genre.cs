@@ -1,8 +1,8 @@
-﻿namespace AspCoreApplication2023.Models
+﻿namespace WebApplication1.Models.DomainModels
 {
     public class Genre
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string GenreName { get; set; }
         public ICollection<Movie>? movies { get; set; }
     }

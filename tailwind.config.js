@@ -1,8 +1,8 @@
 module.exports = {
     content: [
-        './Views/**/*.cshtml',
-        './wwwroot/**/*.html',
-        './Pages/**/*.cshtml'
+        './Pages/**/*.cshtml', // Razor Pages
+        './Views/**/*.cshtml', // MVC Views
+        './wwwroot/**/*.html', // Static HTML files
     ],
     theme: {
         extend: {},

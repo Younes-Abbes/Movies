@@ -1,10 +1,9 @@
-﻿using AspCoreApplication2023.Models;
-
-namespace WebApplication1.Models
+﻿
+namespace WebApplication1.Models.DomainModels
 {
     public class Memebershiptype
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int SignUpFee { get; set; }
         public int DurationInMonth { get; set; }
         public float DiscountRate { get; set; }

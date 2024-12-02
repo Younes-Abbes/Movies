@@ -1,18 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Models;
+using WebApplication1.Models.DomainModels;
+using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
     public class MembershipTypeController : Controller
     {
-        private ApplicationDbContext _context;
+        private MembershipTypeService _context;
         public MembershipTypeController(ApplicationDbContext context)
         {
-            _context = context;
+            _context = new MembershipTypeService(context);
         }
         public IActionResult Index()
         {
-            var memberships = _context.memebershipTypes.ToList();
+            var memberships = _context.GetAll();
             return View(memberships);
         }
         [HttpGet]
@@ -24,8 +25,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult create(Memebershiptype membership)
         {
-            _context.memebershipTypes.Add(membership);
-            _context.SaveChanges();
+            _context.Add(membership);
+            _context.Save();
             return RedirectToAction("Index");
         }
     }

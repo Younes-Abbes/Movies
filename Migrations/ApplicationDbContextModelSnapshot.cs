@@ -23,33 +23,29 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("AspCoreApplication2023.Models.Customer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("memebershipTypeId")
-                        .HasColumnType("integer");
+                    b.Property<Guid?>("membershipTypeId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("memebershipTypeId");
+                    b.HasIndex("membershipTypeId");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("AspCoreApplication2023.Models.Genre", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("GenreName")
                         .IsRequired()
@@ -62,18 +58,16 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("AspCoreApplication2023.Models.Movie", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("genre_idId")
-                        .HasColumnType("integer");
+                    b.Property<Guid?>("genre_idId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -84,11 +78,11 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("CustomerMovie", b =>
                 {
-                    b.Property<int>("customersId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("customersId")
+                        .HasColumnType("uuid");
 
-                    b.Property<int>("moviesId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("moviesId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("customersId", "moviesId");
 
@@ -99,11 +93,9 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("WebApplication1.Models.Memebershiptype", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<float>("DiscountRate")
                         .HasColumnType("real");
@@ -121,11 +113,11 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("AspCoreApplication2023.Models.Customer", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Memebershiptype", "memebershipType")
+                    b.HasOne("WebApplication1.Models.Memebershiptype", "membershipType")
                         .WithMany("customers")
-                        .HasForeignKey("memebershipTypeId");
+                        .HasForeignKey("membershipTypeId");
 
-                    b.Navigation("memebershipType");
+                    b.Navigation("membershipType");
                 });
 
             modelBuilder.Entity("AspCoreApplication2023.Models.Movie", b =>
