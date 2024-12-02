@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\tailwind.css"
     },
     {
+      "Id": "C:\\Users\\youne\\OneDrive\\Desktop\\GL3\\Frameworks develop\\WebApplication1\\WebApplication1\\wwwroot\\css\\tailwind.generated.css",
+      "PackagePath": "staticwebassets\\css\\tailwind.generated.css"
+    },
+    {
       "Id": "C:\\Users\\youne\\OneDrive\\Desktop\\GL3\\Frameworks develop\\WebApplication1\\WebApplication1\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

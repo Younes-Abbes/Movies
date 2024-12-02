@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PaD+cLi7iy3B0YScNgErmMo1ADoAmqkbW12CdvR9zQ4=",
+  "Hash": "Ylfp/6qdpmMwrvJxLt+bxWigCAwAOsX5IhaoNrin4hE=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\tailwind.css"
+    },
+    {
+      "Identity": "C:\\Users\\youne\\OneDrive\\Desktop\\GL3\\Frameworks develop\\WebApplication1\\WebApplication1\\wwwroot\\css\\tailwind.generated.css",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\youne\\OneDrive\\Desktop\\GL3\\Frameworks develop\\WebApplication1\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "css/tailwind.generated.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\tailwind.generated.css"
     },
     {
       "Identity": "C:\\Users\\youne\\OneDrive\\Desktop\\GL3\\Frameworks develop\\WebApplication1\\WebApplication1\\wwwroot\\favicon.ico",
