@@ -1,11 +1,11 @@
 module.exports = {
     content: [
-        './Views/**/*.cshtml',  // Include Razor views
-        './Pages/**/*.cshtml',  // For Razor Pages
-        './wwwroot/**/*.html',  // Static HTML files (if any)
+        './Views/**/*.cshtml',  // For Razor views
+        './wwwroot/**/*.html',  // If you have any static HTML files
+        './wwwroot/js/**/*.js', // If you use Tailwind classes in JS
     ],
     theme: {
         extend: {},
     },
     plugins: [],
-};
+}

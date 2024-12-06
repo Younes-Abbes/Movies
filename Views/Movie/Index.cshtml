@@ -1,25 +1,36 @@
 ﻿@model List<Movie>
-<h2>Movie List</h2>
-<table class="table-auto">
+
+<h2 class="text-2xl font-bold mb-4 text-center text-gray-800">Movie List</h2>
+
+<table class="table-auto w-full border-collapse border border-gray-300 shadow-lg">
     <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Actions</th>
+        <tr class="bg-gray-800 text-white">
+            <!-- Fixed text color -->
+            <th class="px-4 py-2 border border-gray-300">ID</th>
+            <th class="px-4 py-2 border border-gray-300">Name</th>
+            <th class="px-4 py-2 border border-gray-300">Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var movie in Model)
         {
-            <tr class="bg-black">
-                <td>@movie.Id</td>
-                <td>@movie.Name</td>
-                <td>
-                    <a  class="bg-blue-500 text-black p-2" asp-area="" asp-controller="Movie" asp-action="edit" asp-route-id="@movie.Id" >Edit</a>
-                    <a style="background: #FF0000" class=" text-black p-2" asp-area="" asp-controller="Movie" asp-action="delete" asp-route-id="@movie.Id" >Delete</a>
+            <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 transition duration-300">
+                <td class="px-4 py-2 border border-gray-300 text-center">@movie.Id</td>
+                <td class="px-4 py-2 border border-gray-300">@movie.Name</td>
+                <td class="px-4 py-2 border border-gray-300 flex justify-center gap-2">
+                    <a class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition duration-300"
+                       asp-area="" asp-controller="Movie" asp-action="edit" asp-route-id="@movie.Id">Edit</a>
+                    <a class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition duration-300"
+                       asp-area="" asp-controller="Movie" asp-action="delete" asp-route-id="@movie.Id">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<button style="background: #00FF00" class=" text-black p-4 mt-4" onclick="location.href='@Url.Action("add", "Movie")'">Insert New Movie</button>
+
+<div class="text-center mt-6">
+    <button class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition duration-300"
+            onclick="location.href='@Url.Action("add", "Movie")'">
+        Insert New Movie
+    </button>
+</div>

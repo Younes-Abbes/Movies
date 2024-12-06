@@ -6,14 +6,14 @@ namespace WebApplication1.Controllers
 {
     public class MembershipTypeController : Controller
     {
-        private MembershipTypeService _context;
-        public MembershipTypeController(ApplicationDbContext context)
+        private IGenericService<Memebershiptype> _context;
+        public MembershipTypeController(IGenericService<Memebershiptype> context)
         {
-            _context = new MembershipTypeService(context);
+            _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var memberships = _context.GetAll();
+            var memberships = await _context.GetAllAsync();
             return View(memberships);
         }
         [HttpGet]
@@ -23,10 +23,10 @@ namespace WebApplication1.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult create(Memebershiptype membership)
+        public async Task<IActionResult> create(Memebershiptype membership)
         {
-            _context.Add(membership);
-            _context.Save();
+            await _context.AddAsync(membership);
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
     }

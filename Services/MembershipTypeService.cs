@@ -1,42 +1,23 @@
-﻿using WebApplication1.Models.DomainModels;
+﻿using WebApplication1.Data.Repositories;
+using WebApplication1.Models.DomainModels;
 namespace WebApplication1.Services
 {
-    public class MembershipTypeService : IGenericRepository<Memebershiptype>
+    public interface IMembershipTypeService : IGenericService<Memebershiptype>
     {
-        private readonly ApplicationDbContext _context;
-        public MembershipTypeService(ApplicationDbContext context)
+        Task<IEnumerable<Memebershiptype>> GetAllAsync();
+        Task<Memebershiptype> GetById(Guid id);
+        Task<Memebershiptype> CreateUserAsync(Memebershiptype userDto);
+        void Update(Memebershiptype entity);
+        void Delete(Memebershiptype entity);
+        void Add(Memebershiptype entity);
+        void Save();
+    }
+    public class MembershipTypeService : GenericService<Memebershiptype>
+    {
+        private readonly IGenericRepository<Memebershiptype> _context;
+        public MembershipTypeService(IGenericRepository<Memebershiptype> context) : base(context)
         {
             _context = context;
-        }
-
-        public void Add(Memebershiptype entity)
-        {
-            _context.memebershipTypes.Add(entity);
-        }
-
-        public void Delete(Memebershiptype entity)
-        {
-            _context.memebershipTypes.Remove(entity);
-        }
-
-        public List<Memebershiptype> GetAll()
-        {
-            return _context.memebershipTypes.ToList();
-        }
-
-        public Memebershiptype GetById(Guid id)
-        {
-            return _context.memebershipTypes.Find(id);
-        }
-
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
-        public void Update(Memebershiptype entity)
-        {
-            _context.memebershipTypes.Update(entity);
         }
     }
 }

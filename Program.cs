@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using AspCoreApplication2023;
 using WebApplication1;
+using WebApplication1.Data.Repositories;
+using WebApplication1.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+
 
 
 

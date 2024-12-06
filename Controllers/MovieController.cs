@@ -7,21 +7,21 @@ namespace AspCoreApplication2023.Controllers
 {
     public class MovieController : Controller
     {
-        private MovieService _context;
-        public MovieController(ApplicationDbContext context)
+        private readonly IGenericService<Movie> _context;
+        public MovieController(IGenericService<Movie> context)
         {
-            this._context = new MovieService(context);
+            _context = context;
         }
         [ActionName("Index")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            
-            List<Movie> movies = _context.GetAll();
+
+            List<Movie> movies = (List<Movie>)await _context.GetAllAsync();
             return View(movies);
         }
-        public IActionResult Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            var movie = _context.GetById(id);
+            var movie = await _context.GetByIdAsync(id);
             if (movie != null)
             {
                 var movieToEdit = new EditMovieRequest()
@@ -35,14 +35,14 @@ namespace AspCoreApplication2023.Controllers
             return Content("Test Id: " + id);
         }
         [HttpPost]
-        public IActionResult Edit(EditMovieRequest newMovie)
+        public async Task<IActionResult> Edit(EditMovieRequest newMovie)
         {
-            var movie = _context.GetById(newMovie.Id);
+            var movie = await _context.GetByIdAsync(newMovie.Id);
             if (movie != null)
             {
                 movie.Name = newMovie.Name;
                 movie.genre_id = newMovie.genre_id;
-                _context.Save();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(movie);
@@ -90,19 +90,23 @@ namespace AspCoreApplication2023.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult add(Movie movie)
+        public async Task<IActionResult> add(Movie movie)
         {
-            movie.genre_id = _context.GetAll().First().genre_id;
-            _context.Add(movie);
-            _context.Save();
+            var firstGenre = (await _context.GetAllAsync()).FirstOrDefault();
+            if (firstGenre != null)
+            {
+                movie.genre_id = firstGenre.genre_id;
+            }
+            await _context.AddAsync(movie);
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        public IActionResult delete(Guid id) {
-            var movie = _context.GetById(id);
+        public async Task<IActionResult> delete(Guid id) {
+            var movie = await _context.GetByIdAsync(id);
             if (movie != null)
             {
-                _context.Delete(movie);
-                _context.Save();
+                await _context.DeleteAsync(id);
+                await _context.SaveChangesAsync();
             }
             return RedirectToAction("index");
         }

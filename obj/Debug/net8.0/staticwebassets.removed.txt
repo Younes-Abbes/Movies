@@ -1,0 +1,2 @@
+C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\wwwroot\css\tailwind.css
+C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\wwwroot\css\tailwind.generated.css

@@ -8,27 +8,28 @@ namespace WebApplication1.Controllers
 {
     public class CustomerController : Controller
     {
-        private CustomerService _context;
-        private MembershipTypeService _membershipService;
-        public CustomerController(ApplicationDbContext context)
+        private readonly IGenericService<Customer> _customerService;
+        private readonly IGenericService<Memebershiptype> _membershipService;
+
+        public CustomerController(IGenericService<Customer> customerService, IGenericService<Memebershiptype> membershipService)
         {
-            this._context = new CustomerService(context);
-            this._membershipService = new MembershipTypeService(context);
+            _customerService = customerService;
+            _membershipService = membershipService;
         }
         [ActionName("Index")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var customers = _context.GetAll();
+            var customers = await _customerService.GetAllAsync();
             return View(customers);
         }
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var memberships = _membershipService.GetAll();
+            var memberships = await _membershipService.GetAllAsync();
             ViewBag.memberships = memberships.Select(membership => new SelectListItem() { Text = "membership " + membership.Id.ToString(), Value= @membership.Id.ToString()});
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Customer newCustomer)
+        public async Task<IActionResult> Create(Customer newCustomer)
         {
             if (!ModelState.IsValid)
             {
@@ -36,14 +37,14 @@ namespace WebApplication1.Controllers
             }
             var membershipType = newCustomer.membershipType;
 
-            this._context.Add(newCustomer);
-            this._context.Save();
+            await _customerService.AddAsync(newCustomer);
+             await _customerService.SaveChangesAsync();
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            var customer = _context.GetById(id);
+            var customer = await _customerService.GetByIdAsync(id);
             if (customer != null){
                 var customerToEdit = new EditCustomerRequest()
                 {
@@ -56,28 +57,28 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public IActionResult Edit(EditCustomerRequest newCustomer)
+        public async Task<IActionResult> Edit(EditCustomerRequest newCustomer)
         {
-            var customer = _context.GetById(newCustomer.Id);
+            var customer = await _customerService.GetByIdAsync(newCustomer.Id);
             if (customer != null)
             {
                 customer.Name = newCustomer.Name;
                 customer.membershipType = newCustomer.membershipType;
-                _context.Save();
+                await _customerService.SaveChangesAsync();
             }
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            var customer = _context.GetById(id);
+            var customer = await _customerService.GetByIdAsync(id);
             return View(customer);
         }
         [HttpPost]
-        public IActionResult Delete(Customer customer)
+        public async Task<IActionResult> Delete(Customer customer)
         {
-            _context.Delete(customer);
-            _context.Save();
+            await _customerService.DeleteAsync(customer.Id);
+            await _customerService.SaveChangesAsync();
             return RedirectToAction("Index");
         }
     }
