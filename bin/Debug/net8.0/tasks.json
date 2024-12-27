@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build css",
+      "type": "shell",
+      "command": "npm run build:css", // or pnpm run build:css if you're using pnpm
+      "problemMatcher": []
+    }
+  ]
+}

@@ -145,8 +145,8 @@ C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplic
 C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\bin\Debug\net8.0\package-lock.json
 C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\bin\Debug\net8.0\package.json
 C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
-C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json
 C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\bin\Debug\net8.0\WebApplication1.staticwebassets.endpoints.json
 C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\obj\Debug\net8.0\staticwebassets\msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\youne\OneDrive\Desktop\GL3\Frameworks develop\WebApplication1\WebApplication1\bin\Debug\net8.0\tasks.json

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QLeyFEy4IFeO/9+SM8TTksW0pqEArOUvqqvT58sJOtg=",
+  "Hash": "yF317clAEHdaeii5Uks0WMFko0fodRkQHj7B+9QuzVs=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -94,8 +94,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "pj0mswdf49",
-      "Integrity": "u6fcs6fRdGzDlJ2CKgGZOk/KmnDMXOnyLXGNQ16mYHw=",
+      "Fingerprint": "536fjf9quf",
+      "Integrity": "b5TKfuOmhR26nPaRW0s7Azzmm7Pma45lt2eN8VaxM60=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -1445,6 +1445,51 @@
       ]
     },
     {
+      "Route": "css/output.536fjf9quf.css",
+      "AssetFile": "C:\\Users\\youne\\OneDrive\\Desktop\\GL3\\Frameworks develop\\WebApplication1\\WebApplication1\\wwwroot\\css\\output.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10063"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"b5TKfuOmhR26nPaRW0s7Azzmm7Pma45lt2eN8VaxM60=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Dec 2024 09:13:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "536fjf9quf"
+        },
+        {
+          "Name": "label",
+          "Value": "css/output.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-b5TKfuOmhR26nPaRW0s7Azzmm7Pma45lt2eN8VaxM60="
+        }
+      ]
+    },
+    {
       "Route": "css/output.css",
       "AssetFile": "C:\\Users\\youne\\OneDrive\\Desktop\\GL3\\Frameworks develop\\WebApplication1\\WebApplication1\\wwwroot\\css\\output.css",
       "Selectors": [],
@@ -1455,7 +1500,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "10173"
+          "Value": "10063"
         },
         {
           "Name": "Content-Type",
@@ -1463,11 +1508,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"u6fcs6fRdGzDlJ2CKgGZOk/KmnDMXOnyLXGNQ16mYHw=\""
+          "Value": "\"b5TKfuOmhR26nPaRW0s7Azzmm7Pma45lt2eN8VaxM60=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 06 Dec 2024 00:11:47 GMT"
+          "Value": "Fri, 06 Dec 2024 09:13:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1477,52 +1522,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-u6fcs6fRdGzDlJ2CKgGZOk/KmnDMXOnyLXGNQ16mYHw="
-        }
-      ]
-    },
-    {
-      "Route": "css/output.pj0mswdf49.css",
-      "AssetFile": "C:\\Users\\youne\\OneDrive\\Desktop\\GL3\\Frameworks develop\\WebApplication1\\WebApplication1\\wwwroot\\css\\output.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "10173"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"u6fcs6fRdGzDlJ2CKgGZOk/KmnDMXOnyLXGNQ16mYHw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 06 Dec 2024 00:11:47 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "pj0mswdf49"
-        },
-        {
-          "Name": "label",
-          "Value": "css/output.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-u6fcs6fRdGzDlJ2CKgGZOk/KmnDMXOnyLXGNQ16mYHw="
+          "Value": "sha256-b5TKfuOmhR26nPaRW0s7Azzmm7Pma45lt2eN8VaxM60="
         }
       ]
     },
