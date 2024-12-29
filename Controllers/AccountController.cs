@@ -26,7 +26,18 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<IActionResult> Register (RegisterViewModel model)
         {
-            var result = await userManager.CreateAsync(new IdentityUser { UserName = model.Username }, model.Password);
+            var identityUser = new IdentityUser { UserName = model.Username, Email = model.Email };
+            var userCreationResult = await userManager.CreateAsync(identityUser, model.Password);
+            if (userCreationResult.Succeeded)
+            {
+                // seed the user with a role user
+                var roleSeedingResult = await userManager.AddToRoleAsync(identityUser,  "User");
+                if (roleSeedingResult.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                return View();
+            }
             return View(model);
         }
 
@@ -37,10 +48,10 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            var result = SignInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
-            if (result.Result.Succeeded)
+            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
+            if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
             }
