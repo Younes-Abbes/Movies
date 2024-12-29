@@ -1,0 +1,29 @@
+{
+  "name": "webapplication1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/output.css --minify",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "start": "webpack --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^10.4.20",
+    "babel-loader": "^8.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0"
+  },
+  "description": ""
+}

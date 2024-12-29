@@ -16,12 +16,27 @@ namespace WebApplication1.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AspCoreApplication2023.Models.Customer", b =>
+            modelBuilder.Entity("CustomerMovie", b =>
+                {
+                    b.Property<Guid>("customersId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("moviesId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("customersId", "moviesId");
+
+                    b.HasIndex("moviesId");
+
+                    b.ToTable("CustomerMovie");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Customer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +56,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("AspCoreApplication2023.Models.Genre", b =>
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Genre", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +71,27 @@ namespace WebApplication1.Migrations
                     b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("AspCoreApplication2023.Models.Movie", b =>
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Memebershiptype", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<float>("DiscountRate")
+                        .HasColumnType("real");
+
+                    b.Property<int>("DurationInMonth")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SignUpFee")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("memebershipTypes");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Movie", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -78,78 +113,43 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("CustomerMovie", b =>
                 {
-                    b.Property<Guid>("customersId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("moviesId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("customersId", "moviesId");
-
-                    b.HasIndex("moviesId");
-
-                    b.ToTable("CustomerMovie");
-                });
-
-            modelBuilder.Entity("WebApplication1.Models.Memebershiptype", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<float>("DiscountRate")
-                        .HasColumnType("real");
-
-                    b.Property<int>("DurationInMonth")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SignUpFee")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("memebershipTypes");
-                });
-
-            modelBuilder.Entity("AspCoreApplication2023.Models.Customer", b =>
-                {
-                    b.HasOne("WebApplication1.Models.Memebershiptype", "membershipType")
-                        .WithMany("customers")
-                        .HasForeignKey("membershipTypeId");
-
-                    b.Navigation("membershipType");
-                });
-
-            modelBuilder.Entity("AspCoreApplication2023.Models.Movie", b =>
-                {
-                    b.HasOne("AspCoreApplication2023.Models.Genre", "genre_id")
-                        .WithMany("movies")
-                        .HasForeignKey("genre_idId");
-
-                    b.Navigation("genre_id");
-                });
-
-            modelBuilder.Entity("CustomerMovie", b =>
-                {
-                    b.HasOne("AspCoreApplication2023.Models.Customer", null)
+                    b.HasOne("WebApplication1.Models.DomainModels.Customer", null)
                         .WithMany()
                         .HasForeignKey("customersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AspCoreApplication2023.Models.Movie", null)
+                    b.HasOne("WebApplication1.Models.DomainModels.Movie", null)
                         .WithMany()
                         .HasForeignKey("moviesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AspCoreApplication2023.Models.Genre", b =>
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Customer", b =>
+                {
+                    b.HasOne("WebApplication1.Models.DomainModels.Memebershiptype", "membershipType")
+                        .WithMany("customers")
+                        .HasForeignKey("membershipTypeId");
+
+                    b.Navigation("membershipType");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Movie", b =>
+                {
+                    b.HasOne("WebApplication1.Models.DomainModels.Genre", "genre_id")
+                        .WithMany("movies")
+                        .HasForeignKey("genre_idId");
+
+                    b.Navigation("genre_id");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Genre", b =>
                 {
                     b.Navigation("movies");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Memebershiptype", b =>
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Memebershiptype", b =>
                 {
                     b.Navigation("customers");
                 });

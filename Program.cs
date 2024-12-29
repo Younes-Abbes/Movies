@@ -1,39 +1,34 @@
 using Microsoft.EntityFrameworkCore;
-using AspCoreApplication2023;
-using WebApplication1;
+using WebApplication1.Data;
+using Microsoft.AspNetCore.Identity;
 using WebApplication1.Data.Repositories;
 using WebApplication1.Services;
-using Microsoft.AspNetCore.Identity;
-
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Add DbContext
+// Configure DbContexts
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add Repositories and Services
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+builder.Services.AddDbContext<AuthDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add Identity and configure identity options
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
-{
-    options.SignIn.RequireConfirmedAccount = true;
-})
-.AddEntityFrameworkStores<ApplicationDbContext>();  // Changed to ApplicationDbContext to match the DbContext
+// Configure Identity with AuthDbContext
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AuthDbContext>()
+    .AddDefaultTokenProviders(); // Add token providers for password reset, email confirmation, etc.
 
-// Identity options (passwords, lockouts, etc.)
+// Configure Identity options (passwords, lockouts, etc.)
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
     options.Password.RequiredLength = 6;
+    options.Password.RequireUppercase = false;  // Optional, modify according to your requirements
+    options.Password.RequireNonAlphanumeric = false;  // Optional, modify according to your requirements
     options.Password.RequiredUniqueChars = 1;
 
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -43,6 +38,10 @@ builder.Services.Configure<IdentityOptions>(options =>
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = false;
 });
+
+// Add Repositories and Services (if necessary for your project)
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
 
 var app = builder.Build();
 
@@ -58,11 +57,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Enable Authentication and Authorization middleware
-app.UseAuthentication();  // Added to enable Identity Authentication
+// Enable Authentication and Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
-// Custom routes
+// Custom route mapping
 app.MapControllerRoute(
     name: "moviesByRelease",
     pattern: "Movie/released/{year}/{month}",

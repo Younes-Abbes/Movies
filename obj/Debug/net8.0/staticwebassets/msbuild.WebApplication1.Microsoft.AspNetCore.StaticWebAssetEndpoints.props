@@ -12,17 +12,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"z4jbjufg5a"},{"Name":"integrity","Value":"sha256-o1CxYuvhEx10H3X7YxhzxFXFAa1KBlQl3eMNyhgC/LU="},{"Name":"label","Value":"_content/WebApplication1/css/input.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"65"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022o1CxYuvhEx10H3X7YxhzxFXFAa1KBlQl3eMNyhgC/LU=\u0022"},{"Name":"Last-Modified","Value":"Fri, 06 Dec 2024 00:11:06 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/WebApplication1/css/output.536fjf9quf.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\output.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"536fjf9quf"},{"Name":"integrity","Value":"sha256-b5TKfuOmhR26nPaRW0s7Azzmm7Pma45lt2eN8VaxM60="},{"Name":"label","Value":"_content/WebApplication1/css/output.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"10063"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022b5TKfuOmhR26nPaRW0s7Azzmm7Pma45lt2eN8VaxM60=\u0022"},{"Name":"Last-Modified","Value":"Fri, 06 Dec 2024 09:13:30 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WebApplication1/css/output.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\output.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-b5TKfuOmhR26nPaRW0s7Azzmm7Pma45lt2eN8VaxM60="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"10063"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022b5TKfuOmhR26nPaRW0s7Azzmm7Pma45lt2eN8VaxM60=\u0022"},{"Name":"Last-Modified","Value":"Fri, 06 Dec 2024 09:13:30 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-acl18PJYDC6/dodNdryLXw3Yy6HhwTZMNyl\u002B43x7rhs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"10153"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022acl18PJYDC6/dodNdryLXw3Yy6HhwTZMNyl\u002B43x7rhs=\u0022"},{"Name":"Last-Modified","Value":"Fri, 06 Dec 2024 09:13:53 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WebApplication1/css/output.jxewvlvt9s.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\output.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"jxewvlvt9s"},{"Name":"integrity","Value":"sha256-acl18PJYDC6/dodNdryLXw3Yy6HhwTZMNyl\u002B43x7rhs="},{"Name":"label","Value":"_content/WebApplication1/css/output.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"10153"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022acl18PJYDC6/dodNdryLXw3Yy6HhwTZMNyl\u002B43x7rhs=\u0022"},{"Name":"Last-Modified","Value":"Fri, 06 Dec 2024 09:13:53 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WebApplication1/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
