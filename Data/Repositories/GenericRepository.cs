@@ -7,8 +7,8 @@ namespace WebApplication1.Data.Repositories
     public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     {
-        private ApplicationDbContext _context;
-        private DbSet<T> _dbSet;
+        protected ApplicationDbContext _context;
+        protected DbSet<T> _dbSet;
         public GenericRepository(ApplicationDbContext dbContext)
         {
             _context = dbContext;
@@ -24,7 +24,7 @@ namespace WebApplication1.Data.Repositories
             return await  _dbSet.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(Guid id)
         {
             return await  _dbSet.FindAsync(id);
         }

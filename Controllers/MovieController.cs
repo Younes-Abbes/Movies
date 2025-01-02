@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication1.Models.DomainModels;
 using WebApplication1.Models.ViewModels;
 using WebApplication1.Services;
@@ -7,10 +8,12 @@ namespace AspCoreApplication2023.Controllers
 {
     public class MovieController : Controller
     {
-        private readonly IGenericService<Movie> _context;
-        public MovieController(IGenericService<Movie> context)
+        private readonly IMovieService _context;
+        private readonly IGenericService<Genre> _genresContext;
+        public MovieController(IMovieService context, IGenericService<Genre> genresContext)
         {
             _context = context;
+            _genresContext = genresContext;
         }
         [ActionName("Index")]
         public async Task<IActionResult> Index()
@@ -19,8 +22,46 @@ namespace AspCoreApplication2023.Controllers
             List<Movie> movies = (List<Movie>)await _context.GetAllAsync();
             return View(movies);
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> add()
+        {
+            var genres = await _genresContext.GetAllAsync();
+            var model = new AddMovieRequest();
+            model.selectedGenres = [];
+            model.genres = genres.Select(g => new SelectListItem { Value = g.Id.ToString(), Text = g.GenreName });
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> add(AddMovieRequest addMovieRequest)
+        {
+            
+            var movie = new Movie
+            {
+                imdbId = addMovieRequest.imdbId,
+                Name = addMovieRequest.Name,
+                posterUrl = addMovieRequest.posterUrl,
+                genres = new List<Genre>(),
+            };
+
+            foreach (var genreId in addMovieRequest.selectedGenres)
+            {
+                var genre = await _genresContext.GetByIdAsync(Guid.Parse(genreId));
+                if (genre != null)
+                {
+                    movie.genres.Add(genre);
+                }
+            }
+            
+            await _context.AddAsync(movie);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("add");
+        }
+        [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
+            var genres = await _genresContext.GetAllAsync();
             var movie = await _context.GetByIdAsync(id);
             if (movie != null)
             {
@@ -28,10 +69,11 @@ namespace AspCoreApplication2023.Controllers
                 {
                     Id = movie.Id,
                     Name = movie.Name,
-                    genre_id = movie.genre_id
+                    genres = [],
                 };
                 return View(movieToEdit);
             }
+            ViewBag.Genres = genres.Select(g => new SelectListItem { Value = g.Id.ToString(), Text = g.GenreName }).ToArray();
             return Content("Test Id: " + id);
         }
         [HttpPost]
@@ -41,11 +83,22 @@ namespace AspCoreApplication2023.Controllers
             if (movie != null)
             {
                 movie.Name = newMovie.Name;
-                movie.genre_id = newMovie.genre_id;
+                movie.genres = newMovie.genres;
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(movie);
+        }
+        [HttpGet]
+        public async Task<IActionResult> delete(Guid id)
+        {
+            var movie = await _context.GetByIdAsync(id);
+            if (movie != null)
+            {
+                await _context.DeleteAsync(id);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("index");
         }
         [Route("Movie/released")]
         public IActionResult ByRelease()
@@ -85,30 +138,5 @@ namespace AspCoreApplication2023.Controllers
         }
 
         
-        public IActionResult add()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> add(Movie movie)
-        {
-            var firstGenre = (await _context.GetAllAsync()).FirstOrDefault();
-            if (firstGenre != null)
-            {
-                movie.genre_id = firstGenre.genre_id;
-            }
-            await _context.AddAsync(movie);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-        public async Task<IActionResult> delete(Guid id) {
-            var movie = await _context.GetByIdAsync(id);
-            if (movie != null)
-            {
-                await _context.DeleteAsync(id);
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToAction("index");
-        }
     }
 }

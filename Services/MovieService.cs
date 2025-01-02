@@ -15,8 +15,8 @@ namespace WebApplication1.Services
 
     public class MovieService : GenericService<Movie>, IMovieService
     {
-        private readonly IGenericRepository<Movie> _context;
-        public MovieService(IGenericRepository<Movie> context) : base(context)
+        private readonly IMovieRepository _context;
+        public MovieService(IMovieRepository context) : base(context)
         {
             _context = context;
         }
@@ -45,6 +45,10 @@ namespace WebApplication1.Services
         public async Task<IEnumerable<Movie>> GetAllUsersAsync()
         {
             return await _context.GetAllAsync();
+        }
+        public override async Task<Movie> GetByIdAsync(Guid id)
+        {
+            return await _context.GetByIdAsync(id);
         }
 
         public async Task<Movie> GetById(Guid id)

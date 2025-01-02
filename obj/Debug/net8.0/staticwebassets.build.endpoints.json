@@ -2249,7 +2249,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Oct 2024 07:56:00 GMT"
+          "Value": "Tue, 31 Dec 2024 03:28:58 GMT"
         }
       ],
       "EndpointProperties": [
@@ -2286,7 +2286,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Oct 2024 07:56:00 GMT"
+          "Value": "Tue, 31 Dec 2024 03:28:58 GMT"
         }
       ],
       "EndpointProperties": [
@@ -2401,7 +2401,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18817"
+          "Value": "18878"
         },
         {
           "Name": "Content-Type",
@@ -2409,22 +2409,22 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"lO3Eh8Da5BqF4Z+LKY+lNsshNSltvOQaWkelwB9b+No=\""
+          "Value": "\"GbmZvbf2WyMCYmZmyQF6h9WzZuPQntOeUCIjXXxxcAg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 29 Dec 2024 15:37:16 GMT"
+          "Value": "Sun, 29 Dec 2024 15:38:10 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-lO3Eh8Da5BqF4Z+LKY+lNsshNSltvOQaWkelwB9b+No="
+          "Value": "sha256-GbmZvbf2WyMCYmZmyQF6h9WzZuPQntOeUCIjXXxxcAg="
         }
       ]
     },
     {
-      "Route": "css/output.otcqz3mc1w.css",
+      "Route": "css/output.hic762nopn.css",
       "AssetFile": "css/output.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2438,7 +2438,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18817"
+          "Value": "18878"
         },
         {
           "Name": "Content-Type",
@@ -2446,21 +2446,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"lO3Eh8Da5BqF4Z+LKY+lNsshNSltvOQaWkelwB9b+No=\""
+          "Value": "\"GbmZvbf2WyMCYmZmyQF6h9WzZuPQntOeUCIjXXxxcAg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 29 Dec 2024 15:37:16 GMT"
+          "Value": "Sun, 29 Dec 2024 15:38:10 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "otcqz3mc1w"
+          "Value": "hic762nopn"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-lO3Eh8Da5BqF4Z+LKY+lNsshNSltvOQaWkelwB9b+No="
+          "Value": "sha256-GbmZvbf2WyMCYmZmyQF6h9WzZuPQntOeUCIjXXxxcAg="
         },
         {
           "Name": "label",

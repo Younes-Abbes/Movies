@@ -42,6 +42,10 @@ builder.Services.Configure<IdentityOptions>(options =>
 // Add Repositories and Services (if necessary for your project)
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+builder.Services.AddScoped(typeof(IImageRepository), typeof(CloudinaryImageRepository));
+builder.Services.AddScoped(typeof(IMovieRepository), typeof(MovieRepository));
+builder.Services.AddScoped(typeof(IMovieService), typeof(MovieService));
+
 
 var app = builder.Build();
 
@@ -62,6 +66,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Custom route mapping
+app.MapControllers();
 app.MapControllerRoute(
     name: "moviesByRelease",
     pattern: "Movie/released/{year}/{month}",

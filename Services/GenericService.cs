@@ -4,7 +4,7 @@ namespace WebApplication1.Services
 {
     public class GenericService<T> : IGenericService<T> where T : class
     {
-        private readonly IGenericRepository<T> _repository;
+        protected readonly IGenericRepository<T> _repository;
 
         public GenericService(IGenericRepository<T> repository)
         {
@@ -16,7 +16,7 @@ namespace WebApplication1.Services
             return await _repository.GetAllAsync();
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(Guid id)
         {
             return await _repository.GetByIdAsync(id);
         }

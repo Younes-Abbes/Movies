@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241231155118_added imdb id")]
+    partial class addedimdbid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,21 +37,6 @@ namespace WebApplication1.Migrations
                     b.HasIndex("moviesId");
 
                     b.ToTable("CustomerMovie");
-                });
-
-            modelBuilder.Entity("GenreMovie", b =>
-                {
-                    b.Property<Guid>("genresId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("moviesId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("genresId", "moviesId");
-
-                    b.HasIndex("moviesId");
-
-                    b.ToTable("GenreMovie");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.DomainModels.Customer", b =>
@@ -116,6 +104,9 @@ namespace WebApplication1.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("genreId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("imdbId")
                         .IsRequired()
                         .HasColumnType("text");
@@ -124,6 +115,8 @@ namespace WebApplication1.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("genreId");
 
                     b.ToTable("Movies");
                 });
@@ -143,21 +136,6 @@ namespace WebApplication1.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GenreMovie", b =>
-                {
-                    b.HasOne("WebApplication1.Models.DomainModels.Genre", null)
-                        .WithMany()
-                        .HasForeignKey("genresId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApplication1.Models.DomainModels.Movie", null)
-                        .WithMany()
-                        .HasForeignKey("moviesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("WebApplication1.Models.DomainModels.Customer", b =>
                 {
                     b.HasOne("WebApplication1.Models.DomainModels.Memebershiptype", "membershipType")
@@ -165,6 +143,20 @@ namespace WebApplication1.Migrations
                         .HasForeignKey("membershipTypeId");
 
                     b.Navigation("membershipType");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Movie", b =>
+                {
+                    b.HasOne("WebApplication1.Models.DomainModels.Genre", "genre")
+                        .WithMany("movies")
+                        .HasForeignKey("genreId");
+
+                    b.Navigation("genre");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.DomainModels.Genre", b =>
+                {
+                    b.Navigation("movies");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.DomainModels.Memebershiptype", b =>

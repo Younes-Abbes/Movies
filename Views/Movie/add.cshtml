@@ -1,18 +1,66 @@
-﻿@model Movie
+﻿@model AddMovieRequest
 
-<h1 class="text-2xl text-red-500">Add Movie</h1>
+<h1 class="text-2xl text-red-500 mb-4">Add Movie</h1>
 
-<form asp-action="add" class="font-semibold">
-    <div class="form-group" style="background: #AAAAAA">
-        <label asp-for="Name" class="control-label">Name :</label>
-        <input asp-for="Name" class="form-control" />
+<form asp-action="add" class="font-semibold space-y-4">
+    <div class="form-group bg-gray-300 p-4 rounded-md">
+        <label asp-for="Name" id="Name" class="control-label block text-lg font-medium text-gray-700">Name :</label>
+        <input asp-for="Name" id="Name" class="form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
     </div>
-    <div class="form-group" style="background: #AAAAAA">
-        <label asp-for="genre_id" class="control-label">Genre :</label>
-        <input asp-for="genre_id" class="form-control" />
+    <div class="form-group bg-gray-300 p-4 rounded-md">
+        <label asp-for="genres" class="control-label block text-lg font-medium text-gray-700">Genre :</label>
+        <select asp-items="@Model.genres" asp-for="selectedGenres" class="w-full bg-red-200 text-black mt-1 block px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></select>
     </div>
-    
-    <div class="form-group" style="background: #AAAAAA">
-        <button type="submit" class="btn btn-primary">submit</button>
+    <div class="form-group bg-gray-300 p-4 rounded-md">
+        <label asp-for="imdbId" class="control-label block text-lg font-medium text-gray-700">IMDB ID :</label>
+        <input asp-for="imdbId" class="form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
     </div>
-    </form>
+    <div class="form-group bg-gray-300 p-4 rounded-md">
+        <label asp-for="posterUrl" class="control-label block text-lg font-medium text-gray-700">Poster URL :</label>
+        <input readonly asp-for="posterUrl" class="form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+    </div>
+    <div class="form-group bg-gray-300 p-4 rounded-md">
+        <label class="control-label block text-lg font-medium text-gray-700">Poster Display :</label>
+        <img src="" alt="Poster" style="display: none;" class="w-100 h-auto mt-2 rounded-md shadow-md" />
+    </div>
+    <div class="form-group bg-gray-300 p-4 rounded-md">
+        <button type="submit" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+    </div>
+</form>
+
+@section Scripts
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var name = document.querySelector('input[name="Name"]');
+            var genre = document.querySelector('select[name="selectedGenres"]');
+            var imdb = document.querySelector('input[name="imdbId"]');
+            var posterURL = document.querySelector('input[name="posterUrl"]');
+            var posterDisplay = document.querySelector('img');
+
+            async function fetchMovieData(e) {
+                if (!imdb.value.trim()) {
+                     alert('Please enter a valid IMDB ID.');
+                     return;
+                }
+
+                let response = await fetch(`/api/moviesapi?id=${imdb.value}`);
+                response = await response.json();
+                console.log(response);
+                posterURL.value = response.Poster;
+                posterDisplay.src = response.Poster;
+                posterDisplay.style.display = 'block';
+                console.log(`name = ${name.value} and the title ${response.Title}`);
+                name.value = response.Title;
+                genre.value = response.Genre;
+            }
+
+            async function uploadPoster(e) {
+                let data = new FormData();
+                data.append('file', e.target.value);
+            }
+
+            imdb.addEventListener('change', fetchMovieData);
+        });
+    </script>
+}

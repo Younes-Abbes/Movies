@@ -6,7 +6,7 @@ namespace WebApplication1.Models.ViewModels
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Genre? genre_id { get; set; }
+        public Genre[]? genres { get; set; }
 
     }
 }
