@@ -1,29 +1,35 @@
 ﻿@model EditMovieRequest
 
+<h2 class="text-2xl font-bold mb-4">Edit Movie</h2>
 
-<h2>Edit Movie</h2>
-
-<form asp-action="Edit">
+<form asp-action="Edit" class="space-y-4">
     <div class="form-group">
-        <label asp-for="Id" class="control-label"></label>
-        <input readonly asp-for="Id" class="form-control" />
+        <label asp-for="imdbId" class="block text-sm font-medium text-gray-700">IMDB id</label>
+        <input readonly asp-for="imdbId" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
     </div>
-   <div class="form-group">
-       <label asp-for="Name" class="control-label">Name :</label>
-       <input asp-for="Name" class="form-control" />
-   </div>
-   <div class="form-group">
-       <label asp-for="genres" class="control-label">Genre :</label>
-       <select asp-items="@ViewBag.Genres" asp-for="genres" class="form-control" />
-   </div>
-   
-   
-   <div class="form-group">
-       <input type="submit" value="Save" class="btn btn-primary" />
-   </div>
+    <div class="form-group">
+        <label asp-for="Name" class="block text-sm font-medium text-gray-700">Name :</label>
+        <input asp-for="Name" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+    </div>
+    <div class="form-group bg-gray-300 p-4 rounded-md">
+        <label asp-for="genres" class="control-label block text-lg font-medium text-gray-700">Genre :</label>
+        <select asp-items="@Model.genres" asp-for="selectedGenres" class="w-full bg-red-200 text-black mt-1 block px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></select>
+    </div>
+    <div class="form-group bg-gray-300 p-4 rounded-md">
+        <label asp-for="posterUrl" class="control-label block text-lg font-medium text-gray-700">Poster URL :</label>
+        <input readonly asp-for="posterUrl" class="form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+    </div>
+    <div class="form-group bg-gray-300 p-4 rounded-md">
+        <label class="control-label block text-lg font-medium text-gray-700">Poster Display :</label>
+        <img src="@Model.posterUrl" alt="Poster" class="w-100 h-auto mt-2 rounded-md shadow-md" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="inline-flex transition-all duration-300 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-black bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" />
+    </div>
 </form>
 
-<div>
-   <a asp-action="Index">Back to List</a>
+<div class="mt-4">
+    <a asp-action="Index" class="text-blue-600 hover:text-blue-900">Back to List</a>
 </div>
+
 

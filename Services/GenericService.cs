@@ -28,9 +28,9 @@ namespace WebApplication1.Services
             return entity;
         }
 
-        public async Task Update(T entity)
+        public void UpdateAsync(T entity)
         {
-            _repository.Update(entity);
+             _repository.Update(entity);
         }
 
         async Task IGenericService<T>.DeleteAsync(Guid id)
@@ -43,6 +43,8 @@ namespace WebApplication1.Services
         {
             await _repository.SaveChangesAsync();
         }
+
+        
     }
 
 }

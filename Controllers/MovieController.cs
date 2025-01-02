@@ -58,36 +58,51 @@ namespace AspCoreApplication2023.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("add");
         }
+        
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var genres = await _genresContext.GetAllAsync();
+            var genres = (List<Genre>)await _genresContext.GetAllAsync();
             var movie = await _context.GetByIdAsync(id);
+            var genreOptions = genres.Select(g => new SelectListItem
+            {
+                Value = g.Id.ToString(),
+                Text = g.GenreName
+            }).ToList();
             if (movie != null)
             {
                 var movieToEdit = new EditMovieRequest()
                 {
                     Id = movie.Id,
                     Name = movie.Name,
-                    genres = [],
+                    genres = genreOptions,
+                    selectedGenres = movie.genres?.Select(g => g.Id.ToString()).ToArray() ?? Array.Empty<string>(),
+                    posterUrl = movie.posterUrl
                 };
                 return View(movieToEdit);
             }
-            ViewBag.Genres = genres.Select(g => new SelectListItem { Value = g.Id.ToString(), Text = g.GenreName }).ToArray();
             return Content("Test Id: " + id);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(EditMovieRequest newMovie)
+        public async Task<IActionResult> Edit(EditMovieRequest editMovieRequest)
         {
-            var movie = await _context.GetByIdAsync(newMovie.Id);
+            var movie = await _context.GetByIdAsync(editMovieRequest.Id);
             if (movie != null)
             {
-                movie.Name = newMovie.Name;
-                movie.genres = newMovie.genres;
+                movie.Name = editMovieRequest.Name;
+                movie.genres = new List<Genre>();
+                foreach (var genreId in editMovieRequest.selectedGenres)
+                {
+                    var genre = await _genresContext.GetByIdAsync(Guid.Parse(genreId));
+                    if (genre != null)
+                    {
+                        movie.genres.Add(genre);
+                    }
+                }
+                _context.UpdateAsync(movie);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
             }
-            return View(movie);
+            return RedirectToAction("index");
         }
         [HttpGet]
         public async Task<IActionResult> delete(Guid id)

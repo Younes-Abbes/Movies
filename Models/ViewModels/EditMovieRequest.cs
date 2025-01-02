@@ -1,12 +1,16 @@
-﻿using WebApplication1.Models.DomainModels;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using WebApplication1.Models.DomainModels;
 
 namespace WebApplication1.Models.ViewModels
 {
     public class EditMovieRequest
     {
         public Guid Id { get; set; }
+        public string imdbId { get; set; }
         public string Name { get; set; }
-        public Genre[]? genres { get; set; }
+        public IEnumerable<SelectListItem> genres { get; set; }
+        public string[] selectedGenres { get; set; } = [];
+        public string? posterUrl { get; set; } = "";
 
     }
 }
